@@ -1,0 +1,174 @@
+/**======================================================================
+=========================================================================
+Template Name: Elite Able Admin Template
+Author: Codedthemes
+supports: https://phoenixcoded.ticksy.com
+File: style.css
+=========================================================================
+=================================================================================== */
+/**  =====================
+     Google Font
+==========================  **/
+@import url("https://fonts.googleapis.com/css?family=Mada:400,500,600");
+@import url("bootstrap.min.css");
+/**  =====================
+      Custom css start
+==========================  **/
+body {
+  font-family: "Mada", sans-serif;
+  font-size: 14px;
+  color: #686c71;
+  font-weight: 400;
+  background: #F0F0F0;
+  position: relative; }
+
+*:focus {
+  outline: none; }
+
+a:hover {
+  outline: none;
+  text-decoration: none; }
+
+.custom-select,
+.form-control {
+  background: #eff3f6;
+  padding: 10px 20px;
+  font-size: large;
+  height: auto; }
+  .custom-select:focus,
+  .form-control:focus {
+    background: rgb(255, 255, 255); }
+  .custom-select::-moz-placeholder,
+  .form-control::-moz-placeholder {
+    color: #aaaeb3;
+    opacity: 1; }
+  .custom-select:-ms-input-placeholder,
+  .form-control:-ms-input-placeholder {
+    color: #aaaeb3; }
+  .custom-select::-webkit-input-placeholder,
+  .form-control::-webkit-input-placeholder {
+    color: #aaaeb3; }
+
+/* input group start */
+.input-group {
+  background: #eff3f6; }
+  .input-group .form-control {
+    padding: 8px 20px; }
+  .input-group .input-group-text {
+    padding-left: 15px;
+    padding-right: 15px;
+    background: white; }
+    .input-group .input-group-text i {
+      font-size: 16px; }
+  .input-group .custom-file-label {
+    margin-bottom: 0; }
+  .input-group .btn {
+    margin-bottom: 0;
+    margin-right: 0; }
+
+
+
+
+
+/**  =====================
+      Authentication css start
+==========================  **/
+.auth-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-width: 100%;
+  min-height: 100vh; }
+  @media (min-width: 1200px) {
+    .auth-wrapper .container {
+      max-width: 1140px; } }
+  .auth-wrapper .saprator {
+    position: relative;
+    margin: 8px 0; }
+    .auth-wrapper .saprator span {
+      background: #fff;
+      position: relative;
+      padding: 0 10px;
+      z-index: 5;
+      font-size: 20px; }
+    .auth-wrapper .saprator:after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #e2e5e8;
+      z-index: 1; }
+  .auth-wrapper a,
+  .auth-wrapper p > a {
+    color: #111;
+    font-weight: 600; }
+  .auth-wrapper .btn-auth-gen .btn-icon {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px; }
+    .auth-wrapper .btn-auth-gen .btn-icon small {
+      font-size: 15px; }
+  .auth-wrapper .input-group {
+    background: transparent; }
+  .auth-wrapper .card {
+    margin-bottom: 0;
+    padding: 8px; }
+    .auth-wrapper .card .card-body {
+      padding: 20px 25px 20px 40px; }
+  .auth-wrapper > div {
+    z-index: 5; }
+  .auth-wrapper .auth-content {
+    position: relative;
+    padding: 15px;
+    z-index: 5; }
+  @media only screen and (max-width: 767px) {
+    .auth-wrapper .card .card-body {
+      padding: 30px 15px; } }
+  .auth-wrapper.offline {
+    background-image: none; }
+    .auth-wrapper.offline:before {
+      display: none; }
+  .auth-wrapper.error {
+    background: #f44336; }
+    .auth-wrapper.error .container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto 5%;
+      padding: 5%;
+      text-align: center;
+      color: #fff; }
+  .auth-wrapper .card-body .carousel-indicators {
+    margin: 30px 0;
+    bottom: 0; }
+    .auth-wrapper .card-body .carousel-indicators li {
+      width: 50px;
+      background-color: #eff3f6; }
+      .auth-wrapper .card-body .carousel-indicators li.active {
+        background-color: #2196f3; }
+  .auth-wrapper .img-logo-overlay {
+    position: absolute;
+    top: 40px;
+    left: 50px; }
+
+.login{
+  background-color: #e29f01;
+  border: 0;
+  font-size: large;
+
+}
+.login:hover{
+  background-color: white;
+  border: 1px solid #e29f01;
+  color: #e29f01;
+}
+
+
+
+

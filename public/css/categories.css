@@ -1,0 +1,59 @@
+
+.name {
+    font-size: 16px;
+    color: #e83d16 !important;
+    font-weight: 500
+}
+
+.navbar-toggler {
+    font-size: 15px
+}
+
+.nav-link {
+    font-size: 14px;
+    color: #000 !important;
+    font-weight: bold;
+    margin-left: 40px
+}
+
+.form-control {
+    height: 32px;
+    width: 100%;
+    border-radius: 20px;
+    color: #c7c6cb;
+    font-size: 13px;
+    border: none
+}
+
+.searchitem {
+    position: relative
+}
+
+.searchitem i {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    font-size: 13px
+}
+
+
+
+.text {
+    font-size: 23px;
+    font-weight: bold
+}
+
+.card {
+    box-shadow: 5px 5px 15px rgb(77, 76, 76);
+    height: 130px;
+    overflow: hidden;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    
+}
+
+.imagename {
+    font-size: 14px;
+    font-weight: bold
+}
