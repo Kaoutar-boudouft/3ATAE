@@ -48,7 +48,7 @@
                                 contentType:false,
 
                                 success:function(result){
-                                  alert(result);
+                                    console.log("done");
                                 },
                                 error:function(er){
                                   console.log(er);
@@ -141,7 +141,7 @@
 
                 <button id="editeprobtn" type="submit" style="margin-left:19%" class="btn btn-primary">{{__('traduction.E')}}</button>
               </form>
-                <div class="mx-auto" style="padding-left: 33%;padding-top: 10px;border-top: 3px solid black"><img class="mx-auto" src="{{url('/usersqr/'.session('UserName').'.svg')}}"></div>
+                <div class="mx-auto" style="padding-left: 33%;padding-top: 10px;border-top: 3px solid black"><img class="mx-auto" src="{{url('/usersqr/'.$user->id.'.svg')}}"></div>
               <br>
                 <h6 align="center">{{__('traduction.yp')}}: {{$user->Points}}</h6>
                 <script>

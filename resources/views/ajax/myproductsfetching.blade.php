@@ -60,7 +60,6 @@
 
   <script>
     $('.traitement').click(function(){
-   alert($(this).attr('id'));
  })
   /* $('.cd-trigger').click(function(){
   var produitid=$(this).attr('id');

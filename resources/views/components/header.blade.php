@@ -61,9 +61,9 @@
             <div class="menu ml-5"  onclick="openNav()">
                 <div class="hamburger"></div>
             </div>
-            <div class="logo">
-                ism d site
-            </div>
+            <a href="{{url('/')}}" class="logo ml-5" >
+                <img src="{{url('images/logo1.png')}}" width="120" height="55">
+            </a>
 
             <div>
                @if (session()->has('UserName'))

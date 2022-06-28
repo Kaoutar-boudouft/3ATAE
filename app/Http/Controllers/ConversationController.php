@@ -7,7 +7,7 @@ use App\Models\conversation;
 Use \Carbon\Carbon;
 use App\Models\User;
 use App\Models\message;
-use Illuminate\Support\Facades\Validator;    
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use App\Models\Annonces;
@@ -61,7 +61,7 @@ class ConversationController extends Controller
         function messagesblade($id){
             $userid=-1;
             $conv=conversation::where('id',$id)->first();
-           
+
             if($conv->TheOwnerOfOffer!=session('userid')){
                 $userid=$conv->TheOwnerOfOffer;
             }
@@ -84,7 +84,7 @@ class ConversationController extends Controller
 ///////////////////////////////////////////////
 
             function chatblade($id=null){
-                
+
                 $myconversations=DB::select("select * from conversations where TheOwnerOfOffer='".session('userid')."' or TheWinner='".session('userid')."' ");
             $users=array();
             $annonces=array();
@@ -110,7 +110,7 @@ class ConversationController extends Controller
                 $lastmessage=DB::select("select * from messages where IdConversation='".$conv->id."' order by created_at desc limit 1 ");
                 array_push($lastsmessages,$lastmessage);
             }
-            
+
             if($id==null){
                 $convid="null";
             }
@@ -128,7 +128,7 @@ class ConversationController extends Controller
                 }
             }
             return view('chat',['myconversations'=>$myconversations,'users'=>$users,'messages'=>$lastsmessages,'annonces'=>$annonces,'convid'=>$convid]);
-        
+
             }
 
 
@@ -141,5 +141,10 @@ class ConversationController extends Controller
                 $conv=conversation::where('id',$id)->first();
                 return $conv;
             }
-    
+
+            /////////////////////
+    function getConversationOfUser($userid){
+        $convs=DB::select("select c.id as conversationid,c.AnnId as annonceid,u.id as userid,u.UserName as UserName,u.City as usercity ,u.photo as photo,u.phoneNumber as phone,a.Title,a.* from conversations c,users u,annonces a where (c.TheOwnerOfOffer='$userid' or c.TheWinner='$userid') and (u.id=c.TheOwnerOfOffer or u.id=c.TheWinner) and u.id!='$userid' and c.AnnId=a.id ");
+        return response()->json($convs);}
+
 }

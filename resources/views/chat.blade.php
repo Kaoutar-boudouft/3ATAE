@@ -12,7 +12,7 @@
 <div class="container-fluid py-5 px-4 ">
   <!-- For demo purpose-->
   <header class="text-center" style="height: 50px">
-    
+
   </header>
 
   <div class="row rounded-lg overflow-hidden shadow">
@@ -24,7 +24,7 @@
     <div class="col-7 px-0"  >
       <div class="px-4 py-5 chat-box" style="position: relative" id="messagesside">
         <img width="100%" height="400px" src="{{url('images/New message-bro.svg')}}">
-        <h6 align="center">اختر محادثة وابدء الدردشة في حال ليس لديك محادثات عليك التفاعل مع مجتمعنا اما بالعرض او الطلب</h6> 
+        <h6 align="center">اختر محادثة وابدء الدردشة في حال ليس لديك محادثات عليك التفاعل مع مجتمعنا اما بالعرض او الطلب</h6>
 
     </div>
     <!-- Typing area -->
@@ -43,9 +43,9 @@
   var convid;
   var userid="{{session('userid')}}";
   var convisselected=false;
-  
 
-  
+
+
 
 $('.send').click(function(){
   var content=$("#msg").val();
@@ -64,17 +64,17 @@ $('.send').click(function(){
             $('.input').removeAttr('hidden');
             var x=$("#"+convid).find("p").html(content);
             $("#newornot").html("");
-           
+
 
         },
     error:function(er){
       console.log(er);
     }
     })
-                                
-                
 
-                                
+
+
+
                                   },
             error:function(er){
               console.log(er);
@@ -107,10 +107,10 @@ $('#msg').keydown(function(event){
       console.log(er);
     }
     })
-                                
-                
 
-                                
+
+
+
                                   },
             error:function(er){
               console.log(er);
@@ -118,7 +118,7 @@ $('#msg').keydown(function(event){
     });
   }
   }
- 
+
 })
 
 var selectedconv="{{$convid}}";
@@ -128,7 +128,7 @@ var selectedconv="{{$convid}}";
   }
   if (selectedconv!="nope" && selectedconv!="null") {
     $("#"+selectedconv).click();
-  } 
+  }
 
 setInterval(() => {
   if(convisselected==true){
@@ -137,7 +137,7 @@ setInterval(() => {
         url:ajaxurl,
         success:function(data){
             $('#messagesside').html(data);
-             var ajaxurl="api/getConversationByIdApi/"+convid;
+             var ajaxurl="{{url('/')}}"+"/chat/"+convid;
             $.ajax({
         url:ajaxurl,
         success:function(data){
@@ -159,20 +159,20 @@ setInterval(() => {
     }
     })
   }
-  
+
   var ajaxurl="{{url('/')}}"+"/getconv/";
                                 $.ajax({
         url:ajaxurl,
         success:function(data){
             $('#conversationsside').html(data);
-            
+
 
         },
     error:function(er){
       console.log(er);
     }
     })
-    
+
 }, 5000);
 
 

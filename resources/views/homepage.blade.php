@@ -378,7 +378,6 @@ $(document).on('click','.pages_link a',function(e){
 
         function iwantclick(){
           $('.iwant').click(function(e){
-   alert($(this).attr('id'));
    var annid=$(this).attr('id');
    var username='{{session("userid")}}';
    $.ajax({
@@ -415,7 +414,6 @@ $(document).on('click','.pages_link a',function(e){
  function cancelclick(){
   $('.cancel').click(function(){
    var annid=$(this).attr('id').substring(1);
-   alert(annid);
    var username='{{session("userid")}}';
    $.ajax({
     url: '/deleteOffertIwant',

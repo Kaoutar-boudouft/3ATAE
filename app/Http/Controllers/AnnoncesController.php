@@ -7,7 +7,7 @@ use App\Models\Annonces;
 use App\Models\userwantoffer;
 Use \Carbon\Carbon;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;    
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\ConversationController;
 use App\Models\conversation;
@@ -44,7 +44,7 @@ class AnnoncesController extends Controller
 
      ///////////////////////////////////////////////////////////////
 
-     
+
     function AddSdAnnouncementApi(Request $req,$imagesname){
         $user=User::where('UserName',$req->Annonceurname)->first();
         $curedate=Carbon::now();
@@ -122,14 +122,14 @@ class AnnoncesController extends Controller
              $this->AddSdAnnouncementApi($req,$imagesname);
              return response()->json(['code'=>1]);
             }
-     
+
     }
 
      ////////////////////////////////////////////////////////////////////////////
 
      public static function GetSDAPerUserApi($userName,$status){
         $user=User::where('UserName',$userName)->first();
-        $sdAnnonces=DB::table('annonces')->where(['AnnonceurId'=>$user->id,'status'=>$status,'deleted_at'=>Null])->paginate(3);
+        $sdAnnonces=DB::table('annonces')->where(['AnnonceurId'=>$user->id,'status'=>$status,'deleted_at'=>Null])->paginate(6);
         return $sdAnnonces;
     }
 
@@ -144,7 +144,7 @@ class AnnoncesController extends Controller
         public function GetAperAjax(Request $req,$type){
             if($req->ajax()){
                 $user=User::where('UserName',session('UserName'))->first();
-                $annonces=DB::table('annonces')->where(['AnnonceurId'=>$user->id,'status'=>$type,'deleted_at'=>Null])->paginate(3);
+                $annonces=DB::table('annonces')->where(['AnnonceurId'=>$user->id,'status'=>$type,'deleted_at'=>Null])->paginate(6);
                 return view("ajax.myproductsfetching",compact('annonces'))->render();
             }
         }
@@ -168,7 +168,7 @@ class AnnoncesController extends Controller
                 $userswhoswant=userwantoffer::where('AnnonceId',$id)->get();
                 $convid=conversation::where('TheOwnerOfOffer',session('userid'))->where('TheWinner',$winnerid)->first();
                 return view('annonceparams',['annonce'=>$annonce,'userswhoswant'=>$userswhoswant,'winner'=>$winner,'convid'=>$convid]);
-            
+
 
         }
         else{
@@ -315,11 +315,11 @@ class AnnoncesController extends Controller
                 }
             }
 
-                
 
 
-          
-            $imagesname = ltrim($imagesname, '*');             
+
+
+            $imagesname = ltrim($imagesname, '*');
             $this->EditeAnnoncesApi($req,$imagesname);
             return response()->json(['code'=>1,'msg'=>"Annonce Was Updated Succefully !"]);
         }
@@ -345,12 +345,12 @@ class AnnoncesController extends Controller
             }
             $offersiwant=AnnoncesController::GetOffersIWantApi($userid);
         if($req->hint2==""){
-           $annonces=DB::table('annonces')->where('Title','like','%'.$req->hint1.'%')->where('City','like','%'.$req->hint3.'%')->where('status','=','valider')->where('deleted_at',Null)->paginate(4);
+           $annonces=DB::table('annonces')->where('Title','like','%'.$req->hint1.'%')->where('City','like','%'.$req->hint3.'%')->where('status','=','valider')->where('deleted_at',Null)->paginate(8);
             return view("ajax.productfetching",['annonces'=>$annonces,'userid'=>$userid,'offersiwant'=>$offersiwant]);
 
             //return DB::select("select * from annonces where (Title like '%$req->hint1%' or Description like '%$req->hint1%') and City like '%$req->hint3%' ");
         }
-        $annonces=DB::table('annonces')->where('Title','like','%'.$req->hint1.'%')->where('SousCategoryId','=',$req->hint2)->where('City','like','%'.$req->hint3.'%')->where('status','=','valider')->where('deleted_at',Null)->paginate(4);
+        $annonces=DB::table('annonces')->where('Title','like','%'.$req->hint1.'%')->where('SousCategoryId','=',$req->hint2)->where('City','like','%'.$req->hint3.'%')->where('status','=','valider')->where('deleted_at',Null)->paginate(8);
         return view("ajax.productfetching",['annonces'=>$annonces,'userid'=>$userid,'offersiwant'=>$offersiwant]);
 
     }}
@@ -387,7 +387,7 @@ class AnnoncesController extends Controller
 
     function deleteItemIwantApi(Request $req){
         userwantoffer::where(['UserWhoWant'=>$req->username,'AnnonceId'=>$req->annid])->delete();
-        
+
     }
 
     /////////////////////////////
@@ -395,7 +395,7 @@ class AnnoncesController extends Controller
     function deleteOffertIwant(Request $req){
             $this->deleteItemIwantApi($req);
             return response()->json(['code'=>1]);
-       
+
     }
 
     //////////////////////////////
@@ -415,5 +415,5 @@ class AnnoncesController extends Controller
         return response()->json(['code'=>1,'convid'=>$convid]);
     }
 
-   
+
 }

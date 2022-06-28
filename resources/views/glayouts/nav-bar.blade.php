@@ -52,9 +52,9 @@
             <div class="menu" onclick="openNav()">
                 <div class="hamburger"></div>
             </div>
-            <div class="logo">
-                ism d site
-            </div>
+            <a href="{{url('/')}}" class="logo ml-5" >
+                <img src="{{url('images/logo2.png')}}" width="120" height="55">
+            </a>
             <div>
 
 
@@ -66,6 +66,11 @@
                 <a style="text-decoration: none" id="surf" href="/#book-form">{{__('traduction.na')}}</a>
                 <a style="text-decoration: none" id="aa"  href="/AddAnnouncement">{{__('traduction.aa')}}</a>
                 <a style="text-decoration: none" id="help" href="#">{{__('traduction.h')}}</a>
+                @if(app()->getLocale()=='ar')
+                    <a  href="{{ route('lang.switch', 'en') }}">english</a>
+                @else
+                    <a  href="{{ route('lang.switch', 'ar') }}">arabic</a>
+                @endif
 
             </div>
         </div>

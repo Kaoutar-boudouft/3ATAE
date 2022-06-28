@@ -6,7 +6,7 @@ use App\Models\SousCategories;
 use App\Models\Annonces;
 Use \Carbon\Carbon;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;    
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AnnoncesController;
@@ -52,7 +52,7 @@ class ProfileController extends Controller
     }
     /////////////////////////////////////////////
     function UpdateProfileApi(Request $req){
-       
+
         $user=User::where('UserName',$req->U)->first();
         if($req->email!=$user->email){
             $res=DB::table('users')->where('UserName',$req->U)->update([
@@ -92,10 +92,10 @@ class ProfileController extends Controller
                     'password'=>Crypt::encryptString($req->password),
                 ]);
                 return "2";
-               
-            
+
+
         }
-       
+
     }
 
     ///////////////////////////////////////////////
@@ -127,14 +127,90 @@ class ProfileController extends Controller
         }
 
     /////////////////////////////////////////////////////////////
-   
+
 }
+    /**
+     * @throws \Exception
+     */
+    function UpdateProfilePicBase64(Request $req){
+        //$user=User::where('id',$req->UserId)->first();
+        $validator=\Validator::make($req->all(),[
+            'UserName' =>['required'],
+            'image'=>['required'],
+        ]);
+        if(!$validator->passes()){
+            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
+        }
+        else{
+            $filename="$req->UserName".".jpg";
+            file_put_contents("profilepics/".$filename,base64_decode($req->image));
+            $res=DB::table('users')->where('UserName',$req->UserName)->update([
+                'photo'=>$req->UserName.".jpg",
+            ]);
+            return response()->json(['code'=>1]);
+        }
+
+    }
+
+    function UpdateUserName(Request $req){
+        $validator=\Validator::make($req->all(),[
+            'userid'=>['required'],
+            'UserName' =>['required', 'string', 'unique:users', 'max:255'],
+        ]);
+        if(!$validator->passes()){
+            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
+        }
+        else{
+            $res=DB::table('users')->where('id',$req->userid)->update([
+                'UserName'=>$req->UserName,
+            ]);
+            return $res;
+        }
+    }
+
+    function UpdateCity(Request $req){
+        $validator=\Validator::make($req->all(),[
+            'userid'=>['required'],
+            'city' =>['required'],
+        ]);
+        if(!$validator->passes()){
+            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
+        }
+        else{
+            $res=DB::table('users')->where('id',$req->userid)->update([
+                'City'=>$req->city,
+            ]);
+            return $res;
+        }
+    }
+
+    function GetUserById($UserId){
+        $user=User::where('id',$UserId)->first();
+        return $user;
+    }
+
+
+    function GetUserByUserName($UserName){
+        $user=User::where('UserName',$UserName)->first();
+        return $user;
+    }
+
+    function getitemsofuser($userid){
+        $annonces=DB::select("select annonces.* from annonces,userwantoffer where annonces.id=userwantoffer.AnnonceId and userwantoffer.UserWhoWant='".$userid."' and annonces.status='valider' ");
+        return $annonces;
+
+    }
+
+    function cancelItemIwant(Request $req){
+
+    }
+
 }
 
-    
-       
-       
-        
-    
-     
+
+
+
+
+
+
 

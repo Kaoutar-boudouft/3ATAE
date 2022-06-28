@@ -31,6 +31,7 @@
                     console.log(result);
                     pointtodisc=result.pointtodiscount;
                     $('#text').html("We Gonna Discount "+result.pointtodiscount+" Points From Your Record");
+                    alert("We Gonna Discount "+result.pointtodiscount+" Points From Your Record");
                 }
                 else {
                     console.log(result);
@@ -39,6 +40,8 @@
                     //$('#secondform').attr('hidden','hidden');
                     //$('#thirdform').removeAttr('hidden');
                     $('#text').html("You Should Pay "+result.amounttopay+"DH in addition of Your Record");
+                    alert("You Should Pay "+result.amounttopay+"DH in addition of Your Record");
+
                 }
 
 

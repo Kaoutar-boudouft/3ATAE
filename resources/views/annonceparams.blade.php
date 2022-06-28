@@ -293,7 +293,6 @@
     $('#editeannonceform').on('submit',function(e){
          e.preventDefault();
          var form=$(this);
-         alert();
          var ifallpicsareempty=0;
          for (let i = 0; i < 5; i++) {
              if ($("#input"+i).val()=="vide") {

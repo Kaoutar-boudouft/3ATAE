@@ -24,8 +24,9 @@
                 <div class="d-flex">
 
                     <div class="ms-3 d-flex flex-column">
-                        <div class="h4">ism de site</div>
-                    </div>
+                        <a href="{{url('/')}}" class="logo ml-5" >
+                            <img src="{{url('images/logo1.png')}}" width="100" height="50">
+                        </a>                    </div>
                 </div>
             </a>
             <div class="collapse navbar-collapse" id="mynav">

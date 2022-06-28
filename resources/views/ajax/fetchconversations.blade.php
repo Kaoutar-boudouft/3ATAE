@@ -53,7 +53,7 @@
             $('#messagesside').html(data);
             convisselected=true;
             $("#newornot"+convid).html("");
-            var ajaxurl="api/getConversationByIdApi/"+convid;
+            var ajaxurl="{{url('/')}}"+"/chat/"+convid;
             $.ajax({
         url:ajaxurl,
         success:function(data){

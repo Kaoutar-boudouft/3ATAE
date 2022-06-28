@@ -59,8 +59,8 @@ class auth extends Controller
                             'confmssg'=>$randomString
                         ]);
                         $details=[
-                            'title'=>'ISM DE SITE',
-                            'body'=>'Dear'.$req->UserName.'<br> this is body <br> this is your CODEPIN : <br>'.$randomString.''
+                            'title'=>'3ATAE',
+                            'body'=>'Dear'.$req->UserName.' this is your CODEPIN : <br>'.$randomString.''
                         ];
                         Mail::to($user[0]->email)->send(new verifyemail($details));
                     }
@@ -72,10 +72,10 @@ class auth extends Controller
                         DB::table('users')->where('UserName',$req->UserName)->update([
                             'confnumber'=>$randompin
                         ]);
-                        $basic  = new \Vonage\Client\Credentials\Basic("482002a4", "7qwnfbdtRkAeIvpu");
+                        $basic  = new \Vonage\Client\Credentials\Basic("1deacccd", "BiVX4dxp88t9ZzJh");
                         $client = new \Vonage\Client($basic);
                         $response = $client->sms()->send(
-                            new \Vonage\SMS\Message\SMS('212'.$user[0]->phoneNumber, "ISM DE SITE", 'Your Verification PIN is : '.$randompin)
+                            new \Vonage\SMS\Message\SMS('212'.$user[0]->phoneNumber, "AATAE", 'Your Verification PIN is : '.$randompin)
                         );
                     }
                     return '1';
@@ -270,7 +270,8 @@ class auth extends Controller
             session()->put('UserName',session('UserNametoVN'));
             session()->forget('UserNametoVN');
             session()->forget('passwordtoVN');
-            QrCode::generate(url('/').'/check/'.session('UserName'), '../public/usersqr/'.session('UserName').'.svg');
+            $user=User::where('UserName',session('UserName'))->first();
+            QrCode::generate('https://3atae.000webhostapp.com/usersrecord/'.$user->id, '../public/usersqr/'.$user->id.'.svg');
             return $this->Login($req);
         }
         else{
